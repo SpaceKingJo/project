@@ -35,6 +35,7 @@ class BackGround:
         self.image.draw(BackGround.x + 800, BackGround.y)
         self.image.draw(BackGround.x - 800, BackGround.y)
 
+
 class Dark:
     image = None
     x, y = 0, 0
@@ -47,17 +48,14 @@ class Dark:
     def draw(self):
         self.image.clip_draw(0, 0, 60, 120, Dark.x, Dark.y)
 
+
 class Boy:
     image = None
     space_down = False
     left_down = False
     right_down = False
 
-
-
-
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND, LEFT_DASH, RIGHT_DASH = 1, 0, 2, 3, 4, 5
-
 
     def handle_left_run(self): # 왼쪽 걷기
         if(self.left_down == False):
