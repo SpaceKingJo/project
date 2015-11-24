@@ -7,6 +7,7 @@ from land import Land
 from rabbit import Rabbit
 from wood import Wood
 from fire import Fire
+from torch import Torch
 from background import BackGround
 
 from pico2d import *
@@ -41,6 +42,7 @@ def main():
     rabbit_group = [Rabbit() for i in range(20)]
     land = Land()
     wood = Wood()
+    torch = Torch()
     fire = Fire()
     background = BackGround()
 
@@ -54,6 +56,7 @@ def main():
         land.update()
         wood.update()
         fire.update()
+        torch.update()
 
         for rabbit in rabbit_group:
             rabbit.update()
@@ -62,6 +65,7 @@ def main():
         background.draw()
         fire.draw()
         wood.draw()
+        torch.draw()
         hero.draw()
         for rabbit in rabbit_group:
             rabbit.draw()

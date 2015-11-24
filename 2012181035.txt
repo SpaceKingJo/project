@@ -1,0 +1,10 @@
+Mon Nov 23 23:33:16 2015 +0900 update
+Mon Nov 23 23:28:46 2015 +0900 update
+Mon Oct 26 19:30:07 2015 +0900 2차 피피티 수정
+Mon Oct 26 18:55:53 2015 +0900 2차 피피티 수정
+Mon Oct 26 18:48:56 2015 +0900 2차 발표 PPT
+Mon Oct 26 18:46:52 2015 +0900 2차 PPT
+Mon Oct 26 18:22:16 2015 +0900 first commit
+Mon Oct 5 00:28:06 2015 +0900 Add project ppt.pptx
+Mon Oct 5 00:21:26 2015 +0900 Add Readme.txt
+Sun Oct 4 23:54:31 2015 +0900 :circus_tent: Added .gitattributes & .gitignore files
