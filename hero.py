@@ -9,6 +9,7 @@ class Hero:
     space_down = False
     left_down = False
     right_down = False
+    frame_switch = False
     speed = 5
 
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND, LEFT_DASH, RIGHT_DASH = 1, 0, 2, 3, 4, 5
@@ -62,7 +63,17 @@ class Hero:
 
     def update(self):
         self.handle_state[self.state](self)
-        self.frame = (self.frame+1) % 4
+        if(self.frame == 2):
+            self.frame_switch = True
+        if(self.frame == 0):
+            self.frame_switch = False
+
+        if(self.frame_switch):
+            self.frame -= 1
+        else:
+            self.frame += 1
+
+
         Hero.x = self.x
         Hero.y = self.y
 
@@ -75,18 +86,18 @@ class Hero:
         self.stand_frames = 0
         self.state = self.RIGHT_STAND
         if Hero.image == None:
-            Hero.image = load_image('main_character3.png')
+            Hero.image = load_image('Hero_character.png')
 
 
     def draw(self):
         if(self.state == self.RIGHT_STAND):
-            self.image.clip_draw(0, 0, 60, 120, self.x, self.y)
+            self.image.clip_draw(240, 120, 60, 120, self.x, self.y)
         if(self.state == self.RIGHT_RUN):
-            self.image.clip_draw(self.frame * 60, 0, 60, 120, self.x, self.y)
+            self.image.clip_draw((self.frame * 60) +180, 120, 60, 120, self.x, self.y)
         if(self.state == self.LEFT_STAND):
-            self.image.clip_draw(180, 120, 60, 120, self.x, self.y)
+            self.image.clip_draw(240, 240, 60, 120, self.x, self.y)
         if(self.state == self.LEFT_RUN):
-            self.image.clip_draw(self.frame * 60, 120, 60, 120, self.x, self.y)
+            self.image.clip_draw((self.frame * 60) + 180, 240, 60, 120, self.x, self.y)
         # if(self.state == 4):
         #     self.image.clip_draw(self.frame * 100, 0 * 100, 100, 100, self.x, self.y)
         # elif(self.state == 5):
