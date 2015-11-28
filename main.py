@@ -26,8 +26,10 @@ def handle_events():
                 Hero.space_down = True
         elif event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
                 Hero.left_down = True
+                Hero.right_down = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
                 Hero.right_down = True
+                Hero.left_down = False
         elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:
                 Hero.left_down = False
         elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:

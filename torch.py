@@ -7,6 +7,7 @@ class Torch:
 
     frame_switch = False
     def __init__(self):
+        self.direction = 1 # 0은 왼쪽 1은 오른쪽
         self.frame_x = 0
         self.frame_y = 0
         self.x = 365
@@ -15,6 +16,11 @@ class Torch:
         self.image = load_image('hero_fire.png')
 
     def update(self):
+        if(Hero.right_down):
+            self.direction = 1
+        elif(Hero.left_down):
+            self.direction = 0
+
         if(self.frame_x == 3):
             self.frame_x = 0
             self.frame_y += 1
@@ -24,5 +30,9 @@ class Torch:
             self.frame_y = 0
 
     def draw(self):
-        self.image2.draw(self.x, self.y)
-        self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x-15, self.y+15)
+        if(self.direction == 0):
+            self.image2.clip_draw(0, 0, 35, 35, self.x, self.y)
+            self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x-15, self.y+15)
+        elif(self.direction == 1):
+            self.image2.clip_draw(35, 0, 35, 35, self.x+70, self.y)
+            self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x+85, self.y+15)
