@@ -2,6 +2,7 @@ import os
 import random
 
 from hero import Hero
+
 from pico2d import *
 
 
@@ -11,7 +12,6 @@ class Rabbit:
     left_down = False
     right_down = False
     frame_switch = False
-
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND, LEFT_DASH, RIGHT_DASH = 1, 0, 2, 3, 4, 5
 
     def handle_left_run(self): # 왼쪽 걷기
@@ -46,8 +46,12 @@ class Rabbit:
         LEFT_DASH: handle_left_dash,
         RIGHT_DASH: handle_right_dash
     }
-    def update(self):
 
+    def get_bb(self):
+        return self.x - 30, self.x + 30
+
+    def update(self):
+        self.num = 20
         if(self.frame == 2):
             self.frame_switch = True
         elif(self.frame == 0):
@@ -61,7 +65,8 @@ class Rabbit:
             self.x -= Hero.speed
         elif(Hero.left_down):
             self.x += Hero.speed
-
+        Rabbit.x = self.x
+        Rabbit.y = self.y
 
 
     def __init__(self):

@@ -21,6 +21,7 @@ class Attack_fire:
             self.direction = 0 #왼쪽
 
     def update(self):
+        Attack_fire.x = self.x
         if(Hero.right_down):
             self.x -= Hero.speed
         elif(Hero.left_down):

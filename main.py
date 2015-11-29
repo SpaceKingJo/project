@@ -9,6 +9,7 @@ from wood import Wood
 from fire import Fire
 from torch import Torch
 from attack_fire import Attack_fire
+from collision import *
 from background import BackGround
 
 from pico2d import *
@@ -17,6 +18,8 @@ from pico2d import *
 os.chdir('resource\\image')
 running = None
 
+
+#키보드 입력
 def handle_events():
     global running
     events = get_events()
@@ -38,10 +41,14 @@ def handle_events():
         elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
                 Hero.right_down = False
 
+
 def main():
+
 
     open_canvas()
 
+
+    #클래스 선언
     hero = Hero()
     rabbit = Rabbit()
     rabbit_group = [Rabbit() for i in range(20)]
@@ -53,22 +60,30 @@ def main():
     attack_fire_group = [Attack_fire() for i in range(20)]
     background = BackGround()
 
+
+    #변수 선언
     rabbit_group_counter = 0
+    rabbit_group_collision_counter = 0
     attack_group_counter = 0
     attack_group_update_counter = 0
+
+
 
     global running
     running = True
 
+
+
     while running:
         handle_events()
+
+        #업데이트
         hero.update()
         background.update()
         land.update()
         wood.update()
         fire.update()
         torch.update()
-
         for rabbit in rabbit_group:
             rabbit.update()
         for attack_fire in attack_fire_group:
@@ -79,7 +94,19 @@ def main():
             attack_fire.update()
             attack_group_update_counter += 1
 
+        #함수
+        for rabbit in rabbit_group:
+            if(rabbit_group_collision_counter == rabbit.num):
+                rabbit_group_collision_counter = 0
+                break
+            if(collision(rabbit, hero)):
+                rabbit.y += 50
+            rabbit_group_collision_counter += 1
+
         clear_canvas()
+
+
+        #그리기
         background.draw()
         fire.draw()
         wood.draw()
@@ -94,6 +121,8 @@ def main():
             attack_fire.draw()
             attack_group_counter += 1
         land.draw()
+
+
         update_canvas()
 
         delay(0.08)

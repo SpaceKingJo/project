@@ -1,6 +1,8 @@
 import os
 import random
 
+from collision import *
+
 from pico2d import *
 
 
@@ -12,6 +14,8 @@ class Hero:
     frame_switch = False
     attack_num = 0
     speed = 5
+    x = 0
+    y = 0
 
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND = 1, 0, 2, 3
 
@@ -57,6 +61,11 @@ class Hero:
         RIGHT_STAND: handle_right_stand,
     }
 
+    def get_bb(self):
+        return self.x - 35, self.x + 35
+
+    def die(self):
+        self.y += 200
 
     def update(self):
         self.handle_state[self.state](self)
@@ -73,6 +82,9 @@ class Hero:
         Hero.state = self.state
         Hero.x = self.x
         Hero.y = self.y
+
+        # if collision(Hero, Rabbit):
+        #     Hero.die()
 
 
 
