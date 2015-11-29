@@ -31,8 +31,8 @@ class Torch:
 
     def draw(self):
         if(self.direction == 0):
-            self.image2.clip_draw(0, 0, 35, 35, self.x, self.y)
-            self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x-15, self.y+15)
+            self.image2.clip_draw(0, 0, 35, 35, self.x+7, self.y-5)
+            self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x-8, self.y+15)
         elif(self.direction == 1):
-            self.image2.clip_draw(35, 0, 35, 35, self.x+70, self.y)
-            self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x+85, self.y+15)
+            self.image2.clip_draw(35, 0, 35, 35, self.x+60, self.y-5)
+            self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x+75, self.y+15)
