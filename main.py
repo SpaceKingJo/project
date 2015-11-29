@@ -73,6 +73,7 @@ def main():
             rabbit.update()
         for attack_fire in attack_fire_group:
             if(attack_group_update_counter == Hero.attack_num):
+                attack_fire.init_direction()
                 attack_group_update_counter = 0
                 break
             attack_fire.update()

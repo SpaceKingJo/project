@@ -7,17 +7,18 @@ class Attack_fire:
 
     frame_switch = False
     def __init__(self):
-        if(Hero.state == Hero.RIGHT_STAND and Hero.state == Hero.RIGHT_RUN):
-            self.direction = 1 #오른쪽
-        else:
-            self.direction = 0 #왼쪽
-
         self.x = 400
         self.y = 142
         self.speed = 7
         self.frame_x = 0
         self.frame_y = 0
         self.image = load_image('attack_fire.png')
+
+    def init_direction(self):
+        if(Hero.state == Hero.RIGHT_STAND or Hero.state == Hero.RIGHT_RUN):
+            self.direction = 1 #오른쪽
+        elif(Hero.state == Hero.LEFT_STAND or Hero.state == Hero.LEFT_RUN):
+            self.direction = 0 #왼쪽
 
     def update(self):
         if(Hero.right_down):
