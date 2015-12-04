@@ -62,7 +62,7 @@ class Hero:
     }
 
     def get_bb(self):
-        return self.x - 30, self.x + 30
+        return self.x - 30, self.y - 60, self.x + 30, self.y + 60
 
     def die(self):
         self.y += 200
@@ -113,3 +113,6 @@ class Hero:
         #     self.image.clip_draw(self.frame * 100, 1 * 100, 100, 100, self.x, self.y)
         # elif(True):
         #     self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x, self.y)
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())

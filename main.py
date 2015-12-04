@@ -112,8 +112,10 @@ def main():
         wood.draw()
         torch.draw()
         hero.draw()
+        hero.draw_bb()
         for rabbit in rabbit_group:
             rabbit.draw()
+            rabbit.draw_bb()
         for attack_fire in attack_fire_group:
             if(attack_group_counter == Hero.attack_num):
                 attack_group_counter = 0
