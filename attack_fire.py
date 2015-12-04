@@ -39,5 +39,11 @@ class Attack_fire:
         if(self.frame_y == 3):
             self.frame_y = 1
 
+    def get_bb(self):
+        return self.x - 35, self. y - 40, self.x +35, self.y + 40
+
     def draw(self):
         self.image.clip_draw(self.frame_x * 70, self.frame_y * 80, 70, 80, self.x, self.y)
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())

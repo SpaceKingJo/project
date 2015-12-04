@@ -66,6 +66,7 @@ def main():
     rabbit_group_collision_counter = 0
     attack_group_counter = 0
     attack_group_update_counter = 0
+    attack_group_collision_counter = 0
 
 
 
@@ -103,6 +104,16 @@ def main():
                 rabbit.y += 50
             rabbit_group_collision_counter += 1
 
+        for rabbit in rabbit_group:
+            for attack_fire in attack_fire_group:
+                if(attack_group_collision_counter == Hero.attack_num):
+                    attack_group_collision_counter = 0
+                    break
+                if(collision(rabbit, attack_fire)):
+                    rabbit.y += 400
+                    attack_fire.y += 400
+                attack_group_collision_counter += 1
+
         clear_canvas()
 
 
@@ -121,6 +132,7 @@ def main():
                 attack_group_counter = 0
                 break
             attack_fire.draw()
+            attack_fire.draw_bb()
             attack_group_counter += 1
         land.draw()
 
