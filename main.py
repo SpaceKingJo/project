@@ -18,10 +18,10 @@ from pico2d import *
 
 os.chdir('resource\\image')
 running = None
-
-
+hero = None
 #키보드 입력
 def handle_events():
+    global hero
     global running
     events = get_events()
     for event in events:
@@ -36,7 +36,8 @@ def handle_events():
                 Hero.right_down = True
                 Hero.left_down = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_a:
-                Hero.attack_num += 1
+                hero.attack_num += 1
+                hero.ability -= 1
         elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:
                 Hero.left_down = False
         elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
@@ -50,6 +51,7 @@ def main():
 
 
     #클래스 선언
+    global hero
     hero = Hero()
     rabbit = Rabbit()
     rabbit_group = [Rabbit() for i in range(20)]
@@ -78,6 +80,7 @@ def main():
 
 
     while running:
+        #핸들 이벤트
         handle_events()
 
         #업데이트
@@ -87,11 +90,11 @@ def main():
         wood.update()
         fire.update()
         torch.update()
-        ui.update(hero.x, hero.y)
+        ui.update(hero.x, hero.y, hero.ability)
         for rabbit in rabbit_group:
             rabbit.update()
         for attack_fire in attack_fire_group:
-            if(attack_group_update_counter == Hero.attack_num):
+            if(attack_group_update_counter == hero.attack_num):
                 attack_fire.init_direction()
                 attack_group_update_counter = 0
                 break
@@ -109,7 +112,7 @@ def main():
 
         for rabbit in rabbit_group:
             for attack_fire in attack_fire_group:
-                if(attack_group_collision_counter == Hero.attack_num):
+                if(attack_group_collision_counter == hero.attack_num):
                     attack_group_collision_counter = 0
                     break
                 if(collision(rabbit, attack_fire)):
@@ -131,7 +134,7 @@ def main():
             rabbit.draw()
             # rabbit.draw_bb()
         for attack_fire in attack_fire_group:
-            if(attack_group_counter == Hero.attack_num):
+            if(attack_group_counter == hero.attack_num):
                 attack_group_counter = 0
                 break
             attack_fire.draw()

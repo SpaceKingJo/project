@@ -11,15 +11,25 @@ class Hero:
     space_down = False
     left_down = False
     right_down = False
+    a_down = False
     frame_switch = False
-    attack_num = 0
     speed = 5
-    x = 0
-    y = 0
+
 
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND = 1, 0, 2, 3
 
     state = RIGHT_STAND
+
+    def __init__(self):
+        self.x, self.y = 400, 142
+        self.ability = 10
+        self.attack_num = 0
+        self.frame = random.randint(0, 7)
+        self.run_frames = 0
+        self.stand_frames = 0
+        self.state = self.RIGHT_STAND
+        if Hero.image == None:
+            Hero.image = load_image('Hero_character.png')
 
     def handle_left_run(self): # 왼쪽 걷기
         if(self.right_down):
@@ -69,6 +79,9 @@ class Hero:
 
     def update(self):
         self.handle_state[self.state](self)
+        if(self.a_down):
+            self.attack_num += 1
+            self.ability -= 1
         if(self.frame == 2):
             self.frame_switch = True
         if(self.frame == 0):
@@ -82,20 +95,6 @@ class Hero:
         Hero.state = self.state
         Hero.x = self.x
         Hero.y = self.y
-
-        # if collision(Hero, Rabbit):
-        #     Hero.die()
-
-
-
-    def __init__(self):
-        self.x, self.y = 400, 142
-        self.frame = random.randint(0, 7)
-        self.run_frames = 0
-        self.stand_frames = 0
-        self.state = self.RIGHT_STAND
-        if Hero.image == None:
-            Hero.image = load_image('Hero_character.png')
 
 
     def draw(self):

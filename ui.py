@@ -12,9 +12,10 @@ class Ui:
     def draw(self):
         self.font.draw(self.x - 20, self.y+70, "능력:%d" % self.attack_num, (1000, 1000, 1000))
 
-    def update(self, x, y):
+    def update(self, x, y, ability):
         self.x = x
         self.y = y
+        self.attack_num = ability
         pass
 
 
@@ -25,7 +26,7 @@ def test_ui():
     for i in range(100):
         clear_canvas()
         ui.score = i
-        ui.update(0, 0) # dummy frame time for interfacing to scroll_state
+        ui.update(0, 0, 0) # dummy frame time for interfacing to scroll_state
         ui.draw()
         update_canvas()
         delay(0.01)
