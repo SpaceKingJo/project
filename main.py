@@ -36,6 +36,9 @@ def handle_events():
                 Hero.right_down = True
                 Hero.left_down = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_a:
+            if(hero.ability == 0):
+                pass
+            else:
                 hero.attack_num += 1
                 hero.ability -= 1
         elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:
@@ -118,6 +121,7 @@ def main():
                 if(collision(rabbit, attack_fire)):
                     rabbit.y += 400
                     attack_fire.y += 400
+                attack_fire.die = False
                 attack_group_collision_counter += 1
 
         clear_canvas()

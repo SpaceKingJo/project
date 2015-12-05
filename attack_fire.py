@@ -9,6 +9,7 @@ class Attack_fire:
     def __init__(self):
         self.x = 400
         self.y = 142
+        self.die = True
         self.speed = 7
         self.frame_x = 0
         self.frame_y = 0
@@ -38,6 +39,11 @@ class Attack_fire:
             self.frame_x += 1
         if(self.frame_y == 3):
             self.frame_y = 1
+
+    def init_fire(self):
+        self.die = False
+        self.x = 400
+        self.y = 142
 
     def get_bb(self):
         return self.x - 15, self. y - 35, self.x + 15, self.y + 35
