@@ -11,6 +11,7 @@ from torch import Torch
 from attack_fire import Attack_fire
 from collision import *
 from background import BackGround
+from ui import Ui
 
 from pico2d import *
 
@@ -59,6 +60,7 @@ def main():
     attack_fire = Attack_fire()
     attack_fire_group = [Attack_fire() for i in range(20)]
     background = BackGround()
+    ui = Ui()
 
 
     #변수 선언
@@ -85,6 +87,7 @@ def main():
         wood.update()
         fire.update()
         torch.update()
+        ui.update(hero.x, hero.y)
         for rabbit in rabbit_group:
             rabbit.update()
         for attack_fire in attack_fire_group:
@@ -135,6 +138,7 @@ def main():
             # attack_fire.draw_bb()
             attack_group_counter += 1
         land.draw()
+        ui.draw()
 
 
         update_canvas()
