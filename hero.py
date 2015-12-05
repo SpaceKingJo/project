@@ -62,7 +62,7 @@ class Hero:
     }
 
     def get_bb(self):
-        return self.x - 30, self.y - 60, self.x + 30, self.y + 60
+        return self.x - 20, self.y - 60, self.x + 20, self.y + 60
 
     def die(self):
         self.y += 200

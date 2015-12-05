@@ -48,7 +48,7 @@ class Rabbit:
     }
 
     def get_bb(self):
-        return self.x - 30, self.y - 50, self.x + 30, self.y + 50
+        return self.x - 10, self.y - 50, self.x + 10, self.y + 50
 
     def update(self):
         self.num = 20
@@ -65,7 +65,6 @@ class Rabbit:
             self.x -= Hero.speed
         elif(Hero.left_down):
             self.x += Hero.speed
-
 
 
     def __init__(self):
@@ -93,5 +92,7 @@ class Rabbit:
         #     self.image.clip_draw(self.frame * 100, 1 * 100, 100, 100, self.x, self.y)
         # elif(True):
         #     self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x, self.y)
+
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
+

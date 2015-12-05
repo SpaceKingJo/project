@@ -40,7 +40,7 @@ class Attack_fire:
             self.frame_y = 1
 
     def get_bb(self):
-        return self.x - 35, self. y - 40, self.x +35, self.y + 40
+        return self.x - 15, self. y - 35, self.x + 15, self.y + 35
 
     def draw(self):
         self.image.clip_draw(self.frame_x * 70, self.frame_y * 80, 70, 80, self.x, self.y)
