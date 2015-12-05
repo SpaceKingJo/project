@@ -97,6 +97,10 @@ def main():
         for rabbit in rabbit_group:
             rabbit.update()
         for attack_fire in attack_fire_group:
+            if(attack_group_update_counter == 20):
+                hero.attack_num = 0
+                for attack_fire in attack_fire_group:
+                    attack_fire.init_fire()
             if(attack_group_update_counter == hero.attack_num):
                 attack_fire.init_direction()
                 attack_group_update_counter = 0
