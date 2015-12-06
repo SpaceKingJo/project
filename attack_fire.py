@@ -9,7 +9,8 @@ class Attack_fire:
     def __init__(self):
         self.x = 400
         self.y = 142
-        self.die = True
+        self.ready = True
+        self.alive = False
         self.speed = 7
         self.frame_x = 0
         self.frame_y = 0

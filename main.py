@@ -74,7 +74,7 @@ def main():
     attack_group_counter = 0
     attack_group_update_counter = 0
     attack_group_collision_counter = 0
-
+    rabbit_alive_switch = False
 
 
     global running
@@ -94,22 +94,24 @@ def main():
         fire.update()
         torch.update()
         ui.update(hero.x, hero.y, hero.ability)
-        for rabbit in rabbit_group:
-            rabbit.update()
-        for attack_fire in attack_fire_group:
-            if(attack_group_update_counter == 20):
-                hero.attack_num = 0
-                for attack_fire in attack_fire_group:
-                    attack_fire.init_fire()
+        for rabbit in rabbit_group: # 토끼 업데이트
+            if(rabbit_group_counter == rabbit.num):
+                pass
+            rabbit_group_counter += 1
+            if(rabbit_alive_switch):
+                rabbit.alive = True
+        for attack_fire in attack_fire_group: # 공격불 업데이트
             if(attack_group_update_counter == hero.attack_num):
                 attack_fire.init_direction()
+                attack_fire.alive = True # 공격불이 활성화 됨
                 attack_group_update_counter = 0
                 break
-            attack_fire.update()
+            if(attack_fire.alive):
+                attack_fire.update()
             attack_group_update_counter += 1
 
         #함수
-        for rabbit in rabbit_group:
+        for rabbit in rabbit_group: #토끼와 히어로의 충돌체크
             if(rabbit_group_collision_counter == rabbit.num):
                 rabbit_group_collision_counter = 0
                 break
@@ -117,14 +119,14 @@ def main():
                 rabbit.y += 50
             rabbit_group_collision_counter += 1
 
-        for rabbit in rabbit_group:
+        for rabbit in rabbit_group: # 토끼와 공격불의 충돌체크
             for attack_fire in attack_fire_group:
                 if(attack_group_collision_counter == hero.attack_num):
                     attack_group_collision_counter = 0
                     break
-                if(collision(rabbit, attack_fire)):
-                    rabbit.y += 400
-                    attack_fire.y += 400
+                if(collision(rabbit, attack_fire) and rabbit.alive and attack_fire.alive):
+                    attack_fire.alive = False
+                    rabbit.alive = False
                 attack_fire.die = False
                 attack_group_collision_counter += 1
 
@@ -139,13 +141,15 @@ def main():
         hero.draw()
         # hero.draw_bb()
         for rabbit in rabbit_group:
-            rabbit.draw()
+            if(rabbit.alive):
+                rabbit.draw()
             # rabbit.draw_bb()
         for attack_fire in attack_fire_group:
             if(attack_group_counter == hero.attack_num):
                 attack_group_counter = 0
                 break
-            attack_fire.draw()
+            if(attack_fire.alive):
+                attack_fire.draw()
             # attack_fire.draw_bb()
             attack_group_counter += 1
         land.draw()

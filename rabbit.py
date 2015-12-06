@@ -14,6 +14,20 @@ class Rabbit:
     frame_switch = False
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND, LEFT_DASH, RIGHT_DASH = 1, 0, 2, 3, 4, 5
 
+    def __init__(self):
+        if(random.randint(0, 2)):
+            self.x, self.y = random.randint(-800, 0), 140
+        else:
+            self.x, self.y = random.randint(800, 1600), 140
+        self.frame = 0
+        self.num = 10
+        self.run_frames = 0
+        self.stand_frames = 0
+        self.alive = False
+        self.state = self.RIGHT_RUN
+        if Rabbit.image == None:
+            Rabbit.image = load_image('rabbit4.png')
+
     def handle_left_run(self): # 왼쪽 걷기
         if(self.x <= Hero.x):
             self.state = self.RIGHT_RUN
@@ -65,19 +79,6 @@ class Rabbit:
             self.x -= Hero.speed
         elif(Hero.left_down):
             self.x += Hero.speed
-
-
-    def __init__(self):
-        if(random.randint(0, 2)):
-            self.x, self.y = random.randint(-800, 0), 140
-        else:
-            self.x, self.y = random.randint(800, 1600), 140
-        self.frame = 0
-        self.run_frames = 0
-        self.stand_frames = 0
-        self.state = self.RIGHT_RUN
-        if Rabbit.image == None:
-            Rabbit.image = load_image('rabbit4.png')
 
     def draw(self):
         #if(self.state == self.RIGHT_STAND):
