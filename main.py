@@ -74,7 +74,7 @@ def main():
     attack_group_counter = 0
     attack_group_update_counter = 0
     attack_group_collision_counter = 0
-    rabbit_alive_switch = False
+    rabbit_alive_counter = 0
 
 
     global running
@@ -96,10 +96,11 @@ def main():
         ui.update(hero.x, hero.y, hero.ability)
         for rabbit in rabbit_group: # 토끼 업데이트
             if(rabbit_group_counter == rabbit.num):
-                pass
+                rabbit_group_counter = 0
+                break
+            if(rabbit.alive):
+                rabbit.update()
             rabbit_group_counter += 1
-            if(rabbit_alive_switch):
-                rabbit.alive = True
         for attack_fire in attack_fire_group: # 공격불 업데이트
             if(attack_group_update_counter == hero.attack_num):
                 attack_fire.init_direction()
@@ -129,6 +130,13 @@ def main():
                     rabbit.alive = False
                 attack_fire.die = False
                 attack_group_collision_counter += 1
+
+        for rabbit in rabbit_group: # 토끼 출현!
+            if(rabbit_alive_counter == rabbit.num):
+                break
+            rabbit.alive = True
+            print("%d %d" % (rabbit.num, rabbit_alive_counter))
+            rabbit_alive_counter += 1
 
         clear_canvas()
 

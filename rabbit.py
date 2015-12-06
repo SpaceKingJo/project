@@ -65,7 +65,6 @@ class Rabbit:
         return self.x - 10, self.y - 50, self.x + 10, self.y + 50
 
     def update(self):
-        self.num = 20
         if(self.frame == 2):
             self.frame_switch = True
         elif(self.frame == 0):
