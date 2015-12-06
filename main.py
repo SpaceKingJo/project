@@ -63,7 +63,7 @@ def main():
     torch = Torch()
     fire = Fire()
     attack_fire = Attack_fire()
-    attack_fire_group = [Attack_fire() for i in range(20)]
+    attack_fire_group = [Attack_fire() for i in range(100)]
     background = BackGround()
     ui = Ui()
 
@@ -75,6 +75,9 @@ def main():
     attack_group_update_counter = 0
     attack_group_collision_counter = 0
     rabbit_alive_counter = 0
+    attack_group_alive_check = False
+    attack_group_alive_counter = 0
+    attack_group_limit = 20
 
 
     global running
@@ -105,6 +108,7 @@ def main():
             if(attack_group_update_counter == hero.attack_num):
                 attack_fire.init_direction()
                 attack_fire.alive = True # 공격불이 활성화 됨
+                attack_fire.init_fire()
                 attack_group_update_counter = 0
                 break
             if(attack_fire.alive):
@@ -138,6 +142,20 @@ def main():
             print("%d %d" % (rabbit.num, rabbit_alive_counter))
             rabbit_alive_counter += 1
 
+        for attack_fire in attack_fire_group: # 불 스킬 존재 유무
+            if(attack_fire.alive):
+                attack_group_alive_counter = 0
+                break
+            attack_group_alive_counter += 1
+            if(attack_group_alive_counter == hero.attack_num):
+                hero.attack_num = 0
+
+
+        for attack_fire in attack_fire_group: # 화면 밖을 벗어나면 불 스킬 사망 판정
+            if(attack_fire.x >= 900 or attack_fire.x <= -100):
+                attack_fire.alive = False
+
+        print("%d" % hero.attack_num)
         clear_canvas()
 
 
