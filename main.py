@@ -19,10 +19,18 @@ from pico2d import *
 os.chdir('resource\\image')
 running = None
 hero = None
+wood = None
+fire = None
+ui = None
+torch = None
 #키보드 입력
 def handle_events():
     global hero
+    global wood
     global running
+    global fire
+    global ui
+    global torch
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -38,9 +46,22 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_a:
             if(hero.ability == 0):
                 pass
-            else:
+            elif(torch.die == False):
                 hero.attack_num += 1
                 hero.ability -= 1
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_z:
+            if(fire.collide):
+                ui.firewood_num -= 1
+                fire.life += 100
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_x:
+            if(fire.collide):
+                torch.die = False
+                torch.life += 100
+                fire.life -= 100
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_c:
+            if(fire.collide):
+                hero.ability += 1
+                fire.life -= 100
         elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:
                 Hero.left_down = False
         elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
@@ -60,11 +81,14 @@ def main():
     rabbit_group = [Rabbit() for i in range(20)]
     land = Land()
     wood = Wood()
+    global torch
     torch = Torch()
+    global fire
     fire = Fire()
     attack_fire = Attack_fire()
     attack_fire_group = [Attack_fire() for i in range(100)]
     background = BackGround()
+    global ui
     ui = Ui()
 
 
@@ -134,6 +158,11 @@ def main():
                     rabbit.alive = False
                 attack_fire.die = False
                 attack_group_collision_counter += 1
+
+        if(collision(wood, hero)):
+            fire.collide = True
+        else:
+            fire.collide = False
 
         for rabbit in rabbit_group: # 토끼 출현!
             if(rabbit_alive_counter == rabbit.num):

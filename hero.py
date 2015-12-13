@@ -22,7 +22,7 @@ class Hero:
 
     def __init__(self):
         self.x, self.y = 400, 142
-        self.ability = 100
+        self.ability = 0
         self.attack_num = 0
         self.frame = random.randint(0, 7)
         self.run_frames = 0

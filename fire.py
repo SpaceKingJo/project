@@ -15,6 +15,7 @@ class Fire:
         self.die = False
         self.image = load_image('fire4.png')
         self.font = load_font("ConsolaMalgun.TTF", 17)
+        self.collide = False
 
     def update(self):
         if(Hero.right_down):
@@ -29,15 +30,18 @@ class Fire:
         if(self.frame_y == 3):
             self.frame_y = 1
 
-        if(self.life == 0):
+        if(self.life <= 0):
+            self.life = 0
             self.die = True
         else:
             self.life -= 1
 
 
     def draw(self):
-        self.font.draw(self.x - 40, self.y+40, "수명 : %d" % self.life, (1000, 1000, 1000))
-        self.font.draw(self.x - 60, self.y+70, "장작 넣기 : z (능력-1 수명+10초)", (1000, 1000, 1000))
-        self.font.draw(self.x - 60, self.y+90, "불 붙이기 : x (능력+3 수명-10초)", (1000, 1000, 1000))
+        self.font.draw(self.x - 40, self.y+50, "수명 : %d" % self.life, (1000, 1000, 0))
+        if(self.collide):
+            self.font.draw(self.x - 120, self.y+70, "장작 넣기 : z (장작-1  수명+100)", (1000, 1000, 1000))
+            self.font.draw(self.x - 120, self.y+90, "불 붙이기 : x (횃불+10 수명-100)", (1000, 1000, 1000))
+            self.font.draw(self.x - 120, self.y+110, "능력 얻기 : c (능력+1  수명-100)", (1000, 1000, 1000))
         if(self.die != True):
             self.image.clip_draw(self.frame_x * 90, self.frame_y * 100, 90, 100, self.x, self.y)
