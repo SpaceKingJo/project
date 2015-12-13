@@ -12,6 +12,7 @@ class Ui:
     def draw(self):
         self.font.draw(self.x - 20, self.y+70, "능력:%d" % self.attack_num, (1000, 1000, 1000))
 
+
     def update(self, x, y, ability):
         self.x = x
         self.y = y
