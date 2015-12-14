@@ -164,10 +164,15 @@ def main():
                 attack_fire.die = False
                 attack_group_collision_counter += 1
 
-        if(collision(wood, hero)):
+        if(collision(wood, hero)): # 나무와 주인공 충돌체크
             fire.collide = True
         else:
             fire.collide = False
+
+        for firewood in firewood_group: # 장작불 주인공 충돌체크
+            if(collision(firewood, hero) and firewood.die == False):
+                ui.firewood_num += 1
+                firewood.die = True
 
         for rabbit in rabbit_group: # 토끼 출현!
             if(rabbit_alive_counter == rabbit.num):
@@ -200,11 +205,11 @@ def main():
         torch.draw()
         hero.draw()
         # hero.draw_bb()
-        for rabbit in rabbit_group:
+        for rabbit in rabbit_group: # 적토끼 출력
             if(rabbit.alive):
                 rabbit.draw()
             # rabbit.draw_bb()
-        for attack_fire in attack_fire_group:
+        for attack_fire in attack_fire_group: # 공격 불 출력
             if(attack_group_counter == hero.attack_num):
                 attack_group_counter = 0
                 break

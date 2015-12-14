@@ -11,14 +11,16 @@ class Firewood:
         else:
             self.x, self.y = random.randint(400, 1200), 140
         self.image = load_image('firewood.png')
-
+        self.die = False
     def get_bb(self):
-        return self.x - 30, self.y - 30, self.x + 30, self.y + 30
+        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
 
     def update(self):
-        if(Hero.right_down):
-            self.x -= Hero.speed
-        elif(Hero.left_down):
-            self.x += Hero.speed
+        if(self.die == False):
+            if(Hero.right_down):
+                self.x -= Hero.speed
+            elif(Hero.left_down):
+                self.x += Hero.speed
     def draw(self):
-        self.image.draw(self.x, self.y)
+        if(self.die == False):
+            self.image.draw(self.x, self.y)
