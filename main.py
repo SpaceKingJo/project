@@ -12,6 +12,7 @@ from attack_fire import Attack_fire
 from collision import *
 from background import BackGround
 from ui import Ui
+from firewood import Firewood
 
 from pico2d import *
 
@@ -90,7 +91,8 @@ def main():
     background = BackGround()
     global ui
     ui = Ui()
-
+    firewood = Firewood()
+    firewood_group = [Firewood() for i in range(20)]
 
     #변수 선언
     rabbit_group_counter = 0
@@ -138,6 +140,9 @@ def main():
             if(attack_fire.alive):
                 attack_fire.update()
             attack_group_update_counter += 1
+
+        for firewood in firewood_group: # 장작불 업데이트
+            firewood.update()
 
         #함수
         for rabbit in rabbit_group: #토끼와 히어로의 충돌체크
@@ -207,6 +212,8 @@ def main():
                 attack_fire.draw()
             # attack_fire.draw_bb()
             attack_group_counter += 1
+        for firewood in firewood_group: # 장작불 출력
+            firewood.draw()
         land.draw()
         ui.draw()
 

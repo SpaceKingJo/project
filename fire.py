@@ -11,7 +11,7 @@ class Fire:
         self.frame_y = 0
         self.x = 400
         self.y = 200
-        self.life = 1000
+        self.life = 3000
         self.die = False
         self.image = load_image('fire4.png')
         self.font = load_font("ConsolaMalgun.TTF", 17)
