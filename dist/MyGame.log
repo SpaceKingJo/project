@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "main.py", line 23, in <module>
+AttributeError: 'module' object has no attribute 'architecture'
+Traceback (most recent call last):
+  File "main.py", line 11, in <module>
+  File "C:\Python34\lib\site-packages\zipextimporter.py", line 116, in load_module
+    raise zipimport.ZipImportError("can't find module %s" % fullname)
+zipimport.ZipImportError: can't find module hero
+Traceback (most recent call last):
+  File "main.py", line 13, in <module>
+  File "C:\Python34\lib\site-packages\zipextimporter.py", line 116, in load_module
+    raise zipimport.ZipImportError("can't find module %s" % fullname)
+zipimport.ZipImportError: can't find module hero

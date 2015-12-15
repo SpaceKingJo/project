@@ -1,6 +1,14 @@
-import sys
 import os
+import platform
+
+if platform.architecture()[0] == '32bit':
+    os.environ["PYSDL2_DLL_PATH"] = "./SDL2/x86"
+else:
+    os.environ["PYSDL2_DLL_PATH"] = "./SDL2/x64"
+
 import random
+import sys
+
 
 from hero import Hero
 from land import Land
@@ -16,8 +24,8 @@ from firewood import Firewood
 from mainback import Mainback
 from eskimo import Eskimo
 
-from pico2d import *
 
+from pico2d import *
 
 os.chdir('resource\\image')
 running = None
