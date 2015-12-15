@@ -15,15 +15,15 @@ class Rabbit:
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND, LEFT_DASH, RIGHT_DASH = 1, 0, 2, 3, 4, 5
 
     def __init__(self):
-        if(random.randint(0, 2)):
-            self.x, self.y = random.randint(-800, 0), 140
+        if(random.randint(0, 1)):
+            self.x, self.y = random.randint(-800, -200), 140
         else:
-            self.x, self.y = random.randint(800, 1600), 140
+            self.x, self.y = random.randint(1000, 1600), 140
         self.frame = 0
-        self.num = 10
         self.run_frames = 0
         self.stand_frames = 0
         self.alive = False
+        self.die = False
         self.state = self.RIGHT_RUN
         if Rabbit.image == None:
             Rabbit.image = load_image('rabbit4.png')

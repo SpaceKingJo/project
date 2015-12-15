@@ -4,8 +4,9 @@ from hero import Hero
 from pico2d import *
 
 class Attack_fire:
-
+    image = None
     frame_switch = False
+
     def __init__(self):
         self.x = 400
         self.y = 142
@@ -14,7 +15,8 @@ class Attack_fire:
         self.speed = 7
         self.frame_x = 0
         self.frame_y = 0
-        self.image = load_image('attack_fire.png')
+        if(Attack_fire.image == None):
+            Attack_fire.image = load_image('attack_fire.png')
 
     def init_direction(self):
         if(Hero.state == Hero.RIGHT_STAND or Hero.state == Hero.RIGHT_RUN):

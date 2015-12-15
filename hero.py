@@ -14,8 +14,8 @@ class Hero:
     a_down = False
     frame_switch = False
     speed = 5
-
-
+    world_x = 400
+    world_y = 142
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND = 1, 0, 2, 3
 
     state = RIGHT_STAND
@@ -93,11 +93,15 @@ class Hero:
             self.frame -= 1
         else:
             self.frame += 1
-
         Hero.state = self.state
         Hero.x = self.x
         Hero.y = self.y
-
+        if(Hero.right_down):
+            Hero.world_x += Hero.speed
+            print("x: %d" % Hero.world_x)
+        elif(Hero.left_down):
+            Hero.world_x -= Hero.speed
+            print("x: %d" % Hero.world_x)
 
     def draw(self):
         if(self.state == self.RIGHT_STAND):

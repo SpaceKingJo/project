@@ -42,7 +42,7 @@ class Torch:
             self.image2.clip_draw(0, 0, 35, 35, self.x+7, self.y-5)
             if(self.die == False):
                 self.image.clip_draw(self.frame_x * 50, self.frame_y * 70, 50, 70, self.x-8, self.y+15)
-            self.font.draw(self.x - 30, self.y-15, "%d" % self.life, (1000, 100, 100))
+            self.font.draw(self.x - 20, self.y-15, "%d" % self.life, (1000, 100, 100))
         elif(self.direction == 1):
             self.image2.clip_draw(35, 0, 35, 35, self.x+60, self.y-5)
             if(self.die == False):

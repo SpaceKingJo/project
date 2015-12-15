@@ -3,15 +3,16 @@ import random
 from pico2d import *
 class Firewood:
 
-    num = 20
-
+    image = None
     def __init__(self):
-        if(random.randint(0, 2)):
-            self.x, self.y = random.randint(-800, 400), 140
+        if(random.randint(0, 1)):
+            self.x, self.y = random.randint(0, 400), 140
         else:
-            self.x, self.y = random.randint(400, 1200), 140
-        self.image = load_image('firewood.png')
+            self.x, self.y = random.randint(400, 800), 140
+        if(Firewood.image == None):
+            Firewood.image = load_image('firewood.png')
         self.die = False
+        self.alive = False
     def get_bb(self):
         return self.x - 15, self.y - 15, self.x + 15, self.y + 15
 
